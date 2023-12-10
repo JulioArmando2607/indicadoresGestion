@@ -1,0 +1,151 @@
+<html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="map_peru_eqv.js"></script>
+  <script src="peru.js"></script>
+  <link href="peru.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top"
+    style="background-color:  #B40404 !important;color: white;">
+    <div class="container">
+      <a class="navbar-brand" href="#" style="padding: 0px; width: 20%;">
+        <img src="imagenes/logoPais.png" style="width: 100%;">
+      </a>
+      <h4 style="width: 80%; text-align: center;">MAPA DE VIGENCIA TECNOLÓGICA DE EQUIPOS INFORMÁTICOS</h4>
+    </div>
+  </nav>
+
+  <br clear="all"><br><br>
+  <div id="container"></div>
+  <div id="detalle" class="mt-5">
+    <div class="container"> 
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="card card-margin">
+            <div class="card-header no-border">
+              <h5 class="card-title">TOTAL EQUIPOS</h5>
+            </div>
+            <div class="card-body pt-0">
+              <div class="widget-49">
+                <div class="widget-49-title-wrapper">
+                  <div class="widget-49-meeting-info">
+                    <span id="pais3cantidad" class="h2">0</span>
+                    <span id="pais3" class="float-right">NACIONAL</span>
+                  </div>
+                  <div style="width: 100%;">
+                    <img src="imagenes/mapa-peru.png" id="mapa-ope" style="height: 90px; float: right;">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="card card-margin">
+            <div class="card-header no-border">
+              <h5 class="card-title">EQUIPOS VIGENTES</h5>
+            </div>
+            <div class="card-body pt-0">
+              <div class="widget-49">
+                <div class="widget-49-title-wrapper">
+
+                  <div class="widget-49-meeting-info">
+
+                    <span id="pais1cantidad" class="h2">0</span>
+                    <span id="pais1" class="float-right">NACIONAL</span>
+                  </div>
+                  <div style="width: 100%;">
+                    <img src="imagenes/mapa-peru.png" id="mapa-ope" style="height: 90px; float: right;">
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+
+    <div class="container">
+       <div class="row">
+        <div class="col-lg-2"  id="miDivOcultableBoton">
+          <div>
+            <button onclick="ocultarDiv()" class="btn btn-danger mr-2">Ver Todo</button> 
+            <script>
+              function ocultarDiv() {
+                location.reload()
+                document.getElementById('miDivOcultableTambo').style.display = 'none';
+                document.getElementById('miDivOcultableDepartamento').style.display = 'block';
+              }
+
+            </script>
+          </div>
+        </div>
+        <div class="col-lg-1">
+          <div>
+            <a href="index.html" class="btn btn-danger">Volver Inicio</a>
+
+            <script>
+
+            </script>
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+   
+
+    <br>
+    <div id="miDivOcultableDepartamento" class="col-lg-10">
+   
+      <table class="table table-bordered table-striped">
+        <thead style="background-color: #B40404 !important; font-size: 13px; color: white; text-align: center;">
+          <tr>
+            <th>Departamento</th>
+            <th>Equipos Vigentes</th>
+            <th>Equipos Obsoletos</th>  
+          </tr>
+        </thead>
+        <tbody id="tabla-departamentos" style="font-size: 12px;text-align: center;">
+         </tbody>
+      </table>
+
+    </div>
+
+
+    <div id="miDivOcultableTambo" class="col-lg-10">
+  
+      <table class="table table-bordered table-striped">
+        <thead  style="background-color: #B40404 !important; font-size: 13px; color: white; text-align: center;">
+          <tr>
+            <th>Departamento</th>
+            <th>Tambo</th>
+            <th>Equipos Vigentes</th>
+
+          </tr>
+        </thead>
+        <tbody id="tabla-tambos" style="font-size: 12px;text-align: center;">
+         </tbody>
+ 
+      </table>
+
+    </div>
+
+  </div> 
+
+</body>
+
+</html>

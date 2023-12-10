@@ -1,0 +1,681 @@
+<html>
+    <head>
+      <meta charset="UTF-8">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+      <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+      <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
+      <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+      <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+      <script src="js/peru.js"></script>
+      <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+      <style type="text/css">
+    
+        #container {
+            width: 50%;
+            margin: 0;
+            padding: 0;
+            float: left;
+        }
+        #detalle{
+            width: 50%;
+            float: left;
+        }
+
+            body{
+        background: #F4F7FD;
+        margin-top:20px;
+    }
+
+    .card-margin {
+        margin-bottom: 1.875rem;
+    }
+
+    .card {
+        border: 0;
+        box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    }
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #ffffff;
+        background-clip: border-box;
+        border: 1px solid #e6e4e9;
+        border-radius: 8px;
+    }
+
+    .card .card-header.no-border {
+        border: 0;
+    }
+    .card .card-header {
+        background: none;
+        padding: 0 0.9375rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        min-height: 50px;
+    }
+    .card-header:first-child {
+        border-radius: calc(8px - 1px) calc(8px - 1px) 0 0;
+    }
+
+    .widget-49 .widget-49-title-wrapper {
+      display: flex;
+      align-items: center;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #edf1fc;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-primary .widget-49-date-day {
+      color: #4e73e5;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-primary .widget-49-date-month {
+      color: #4e73e5;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #fcfcfd;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary .widget-49-date-day {
+      color: #dde1e9;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-secondary .widget-49-date-month {
+      color: #dde1e9;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-success {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #e8faf8;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-success .widget-49-date-day {
+      color: #17d1bd;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-success .widget-49-date-month {
+      color: #17d1bd;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #ebf7ff;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-info .widget-49-date-day {
+      color: #36afff;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-info .widget-49-date-month {
+      color: #36afff;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-warning {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: floralwhite;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-warning .widget-49-date-day {
+      color: #FFC868;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-warning .widget-49-date-month {
+      color: #FFC868;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-danger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #feeeef;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-danger .widget-49-date-day {
+      color: #F95062;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-danger .widget-49-date-month {
+      color: #F95062;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-light {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #fefeff;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-light .widget-49-date-day {
+      color: #f7f9fa;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-light .widget-49-date-month {
+      color: #f7f9fa;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-dark {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #ebedee;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-dark .widget-49-date-day {
+      color: #394856;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-dark .widget-49-date-month {
+      color: #394856;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-base {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background-color: #f0fafb;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-base .widget-49-date-day {
+      color: #68CBD7;
+      font-weight: 500;
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-date-base .widget-49-date-month {
+      color: #68CBD7;
+      line-height: 1;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1rem;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-pro-title {
+      color: #3c4142;
+      font-size: 14px;
+    }
+
+    .widget-49 .widget-49-title-wrapper .widget-49-meeting-info .widget-49-meeting-time {
+      color: #B1BAC5;
+      font-size: 13px;
+    }
+
+    .widget-49 .widget-49-meeting-points {
+      font-weight: 400;
+      font-size: 13px;
+      margin-top: .5rem;
+    }
+
+    .widget-49 .widget-49-meeting-points .widget-49-meeting-item {
+      display: list-item;
+      color: #727686;
+    }
+
+    .widget-49 .widget-49-meeting-points .widget-49-meeting-item span {
+      margin-left: .5rem;
+    }
+
+    .widget-49 .widget-49-meeting-action {
+      text-align: right;
+    }
+
+    .widget-49 .widget-49-meeting-action a {
+      text-transform: uppercase;
+    }
+      
+    </style>
+    </head>
+    <body>
+        
+
+  
+
+      <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color:  #B40404 !important;color: white;">
+        <div class="container">
+          <a class="navbar-brand" href="#" style="padding: 0px; width: 20%;">
+            <img src="imagenes/logoPais.png" style="width: 100%;">
+          </a>
+          <h4 style="width: 80%; text-align: center;">MAPA DE OPERATIVIDAD DEL INTERNET</h4>
+        </div>
+      </nav>
+
+      <br clear="all"><br><br>
+
+
+
+
+
+        <div id="container"></div>
+        <div id="detalle" class="mt-2">
+          
+            <button class="btn btn-danger ml-3 mb-3" onclick="resetear_mapa()">MOSTRAR A NIVEL NACIONAL</button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card card-margin">
+                            <div class="card-header no-border">
+                                <h6 class="card-title">
+                                  INTERNET OPERATIVO
+                                </h6>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="widget-49">
+                                    <div class="widget-49-title-wrapper">                                        
+                                        <div class="widget-49-meeting-info">                                            
+                                            <span class="h2" id="operativo">                                              
+                                            </span>
+                                            <span class="float-right" id="nom-region-ope">
+                                              NACIONAL
+                                            </span>
+                                        </div>
+                                        <div style="width: 100%;">
+                                          <img src="imagenes/mapa-peru.png" id="mapa-ope" style="height: 90px; float: right;">                                
+
+                                        </div>
+
+                                    </div>    
+                                   
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <div class="card card-margin">
+                            <div class="card-header no-border">
+                                <h6 class="card-title">
+                                  INTERNET INOPERATIVO
+                                </h6>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="widget-49">
+                                    <div class="widget-49-title-wrapper">                                       
+                                        <div class="widget-49-meeting-info">
+                                            <span class="h2" id="inoperativo">
+                                              
+                                            </span>
+                                            <span class="float-right" id="nom-region-ino">
+                                              NACIONAL
+                                            </span>
+                                        </div>
+
+                                        <div style="width: 100%;">
+                                          <img src="imagenes/mapa-peru.png" id="mapa-ino" style="height: 90px; float: right;">                                
+    
+                                        </div>
+
+                                    </div>
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+                <div class="col-lg-12">
+
+                    <table id="tbl_estados" class="table table-bordered table-striped">
+                        <thead style="background-color: #B40404 !important; font-size: 13px; color: white; text-align: center;">
+                            <tr>
+                              <th>
+                                DEPARTAMENTO
+                              </th>
+                              <th>
+                                TAMBO
+                              </th>
+                              <th>
+                                ESTADO INTERNET
+                              </th>
+                              <th>
+                                FECHA SIN SERVICIO
+                              </th>
+                              <th>
+                                DÍAS SIN SERVICIO
+                              </th>
+                            </tr>                            
+                        </thead>
+                        <tbody style="font-size: 12px;text-align: center;">
+                          <tr>
+                            <td colspan="5">SIN DATOS PARA MOSTRAR</td>
+                          </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            
+        </div>
+  
+  <script src="js/axios.min.js"></script>
+    
+  <script>
+    
+    valores = [];
+    let myTable = document.getElementById('tbl_estados').getElementsByTagName('tbody')[0];
+
+
+    async function obtener_estados(){
+      await axios.get('https://backend.pais.gob.pe:8075/api-pnpais/mapa/app/listadarBandejaTambosInternet/2023/0').then(response =>{
+
+        datos = response.data[0];
+
+        incidencias = response.data[1];
+
+        datos = datos.filter((row) => row.estado === 'PRESTA SERVICIO');
+        const unique = [...new Set(datos.map(item => item.departamento))];
+        
+        document.getElementById("operativo").innerText = datos.filter((row) => row.estado_internet === 'OPERATIVO').length;
+        document.getElementById("inoperativo").innerText = datos.filter((row) => row.estado_internet !== 'OPERATIVO').length;
+
+
+        for (const item of unique){
+          valores[item] = {'percentage':(datos.filter((row) => row.departamento === item && row.estado_internet === 'OPERATIVO').length/datos.filter((row) => row.departamento === item).length) * 100 , 'operativo': datos.filter((row) => row.departamento === item && row.estado_internet === 'OPERATIVO').length, 'inoperativo': datos.filter((row) => row.departamento === item && row.estado_internet !== 'OPERATIVO').length};
+        }
+        
+
+        for ( const item of datos ) {
+
+          let fila_tambo = incidencias.filter((row) => parseInt(row.snip) === item['num_snip'] && row.idIncidenciaEstado != 3);
+
+          if(fila_tambo.length > 0){
+              item['ultima_incidencia'] = [fila_tambo[0]];
+          }else{
+              item['ultima_incidencia'] = [];
+          }                    
+        }
+
+        anychart.onDocumentReady(function() {
+            // create map
+            var map = anychart.map();
+
+            map.background().fill("none");
+
+
+            // create data set
+            var dataSet = anychart.data.set([
+                {"id":"PE.LB","value":Math.round(valores['LAMBAYEQUE']['percentage'])},
+                {"id":"PE.PI","value":Math.round(valores['PIURA']['percentage'])},
+                {"id":"PE.AP","value":Math.round(valores['APURIMAC']['percentage'])},
+                {"id":"PE.AR","value":Math.round(valores['AREQUIPA']['percentage'])},
+                {"id":"PE.CS","value":Math.round(valores['CUSCO']['percentage'])},
+                {"id":"PE.MD","value":Math.round(valores['MADRE DE DIOS']['percentage'])},
+                {"id":"PE.MQ","value":Math.round(valores['MOQUEGUA']['percentage'])},
+                {"id":"PE.TA","value":Math.round(valores['TACNA']['percentage'])},
+                {"id":"PE.AN","value":Math.round(valores['ANCASH']['percentage'])},
+                {"id":"PE.CJ","value":Math.round(valores['CAJAMARCA']['percentage'])},
+                {"id":"PE.HC","value":Math.round(valores['HUANUCO']['percentage'])},
+                {"id":"PE.LL","value":Math.round(valores['LA LIBERTAD']['percentage'])},
+                {"id":"PE.PA","value":Math.round(valores['PASCO']['percentage'])},
+                {"id":"PE.SM","value":Math.round(valores['SAN MARTIN']['percentage'])},
+                {"id":"PE.UC","value":Math.round(valores['UCAYALI']['percentage'])},
+                {"id":"PE.AM","value":Math.round(valores['AMAZONAS']['percentage'])},
+                {"id":"PE.LO","value":Math.round(valores['LORETO']['percentage'])},
+                {"id":"PE.AY","value":Math.round(valores['AYACUCHO']['percentage'])},
+                {"id":"PE.HV","value":Math.round(valores['HUANCAVELICA']['percentage'])},
+                {"id":"PE.JU","value":Math.round(valores['JUNIN']['percentage'])},
+                {"id":"PE.CL","value":Math.round(valores['PUNO']['percentage'])},
+                {"id":"PE.148","value":Math.round(valores['LIMA']['percentage'])}
+              ]
+            );
+
+            // create choropleth series
+            series = map.choropleth(dataSet);
+
+            // set geoIdField to 'id', this field contains in geo data meta properties
+            series.geoIdField('id');
+
+            // set map color settings
+            //series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+            series.hovered().fill('#C6E1C3');
+
+            series.selected().fill('#C6E1C3');
+
+            var scale = anychart.scales.ordinalColor([
+              {less: 65},
+              {from: 65, to: 89},
+              {greater: 89}
+            ]);
+  
+            scale.colors(['#FE0000', '#FFFF02', '#4DE600']);
+
+            series.colorScale(scale); 
+
+            series.labels(true);
+            labels = series.labels();
+
+            // format labels text
+            labels.format(function (e) {
+                // Gets point source region properties.
+                var properties = this.regionProperties;
+                return  e.value + " %";
+            });
+                
+            // labels setting
+            labels.fontColor('black');
+            labels.fontSize("13px");
+            labels.offsetY(2);
+            labels.offsetX(5);
+
+            // set geo data, you can find this map in our geo maps collection
+            // https://cdn.anychart.com/#maps-collection
+            map.geoData(anychart.maps['peru']);
+            map.overlapMode(false);
+            
+            series.tooltip().format(function(e){
+              return "PORCENTAJE: " + e.value + " %"
+            });
+
+
+            //set map container id (div)
+            map.container('container');
+
+            //initiate map drawing
+            map.draw();
+
+            
+            map.listen('pointsSelect', function (e) {
+
+
+              if(e.points.length > 0){
+
+                myTable.innerHTML = '';
+
+                console.log(e);
+
+                  var selected = [];
+                  var selectedPoints = e.seriesStatus[0].points;
+
+                  if(selectedPoints.length>0){
+                    console.log(selectedPoints[0].properties.name);
+
+                    document.getElementById("operativo").innerText = datos.filter((row) => row.estado_internet === 'OPERATIVO' && row.departamento === selectedPoints[0].properties.name).length;
+                    document.getElementById("inoperativo").innerText = datos.filter((row) => row.estado_internet !== 'OPERATIVO' && row.departamento === selectedPoints[0].properties.name).length;
+                    
+                    document.getElementById("nom-region-ino").innerText = selectedPoints[0].properties.name;
+                    document.getElementById("nom-region-ope").innerText = selectedPoints[0].properties.name;
+
+                    document.getElementById("mapa-ope").src = 'imagenes/'+selectedPoints[0].properties.name+'.png';
+                    document.getElementById("mapa-ino").src = 'imagenes/'+selectedPoints[0].properties.name+'.png';
+                    
+                    const filtered =  datos.filter((row) => row.departamento === selectedPoints[0].properties.name && row.estado_internet !== 'OPERATIVO');
+
+                    if(filtered.length > 0)
+                    {
+                      for(var item of filtered){
+                      
+                        let row = myTable.insertRow();
+                        let cell1 = row.insertCell(0);
+                        let cell2 = row.insertCell(1);
+                        let cell3 = row.insertCell(2);
+
+                        let cell4 = row.insertCell(3);
+                        let cell5 = row.insertCell(4);
+
+                        cell1.innerHTML = item['departamento'];
+                        cell2.innerHTML = item['nom_tambo'];
+                        cell3.innerHTML = item['estado_internet'];
+
+                        cell4.innerHTML = item['ultima_incidencia'][0]['fechaAveria'];
+                        cell5.innerHTML = item['ultima_incidencia'][0]['diasPasados'];
+
+                      }
+                    }else{
+                      let row = myTable.insertRow();
+                      let cell1 = row.insertCell(0);
+                      cell1.id = 'texto-defecto';
+                      document.getElementById("texto-defecto").colSpan = "5"
+                      cell1.innerHTML = 'SIN DATOS PARA MOSTRAR';
+                    }                 
+                  }
+
+              }else{
+
+                resetear_mapa();
+
+              }
+
+            });
+        });
+
+      });
+    }
+
+    function resetear_mapa(){
+      myTable.innerHTML = '';
+
+      document.getElementById("operativo").innerText = datos.filter((row) => row.estado_internet === 'OPERATIVO').length;
+      document.getElementById("inoperativo").innerText = datos.filter((row) => row.estado_internet !== 'OPERATIVO').length;
+          
+      document.getElementById("nom-region-ino").innerText = 'NACIONAL';
+      document.getElementById("nom-region-ope").innerText = 'NACIONAL';
+
+      document.getElementById("mapa-ope").src = 'imagenes/mapa-peru.png';
+      document.getElementById("mapa-ino").src = 'imagenes/mapa-peru.png';
+
+      let row = myTable.insertRow();
+      let cell1 = row.insertCell(0);
+      cell1.id = 'texto-defecto';
+      document.getElementById("texto-defecto").colSpan = "5"
+      cell1.innerHTML = 'SIN DATOS PARA MOSTRAR';
+    }
+
+    obtener_estados();
+
+
+  </script>
+    </body>
+    </html>
+                    
