@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     cargarData(''); // Valor inicial para cargar datos.
 });
 
-//var env = 'https://www.pais.gob.pe/backendsismonitor/';
-var env = 'http://localhost/backendsismonitor/';
+var env = 'https://www.pais.gob.pe/backendsismonitor/';
+//var env = 'http://localhost/backendsismonitor/';
 function cargarData(valor) {
     mostrarLoader();
 
