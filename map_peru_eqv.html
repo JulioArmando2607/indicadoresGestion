@@ -26,7 +26,51 @@
   </nav>
 
   <br clear="all"><br><br>
-  <div id="container"></div>
+  <div id="container">
+    <div class="map-legend">
+      <div class="legend-item">
+        <span class="color-box" style="background-color: #FF0000;"></span><span class="description">Mayormente obsoleto (0% - 64%)</span>
+      </div>
+      <div class="legend-item">
+        <span class="color-box" style="background-color: #FFFF00;"></span><span class="description">Moderada (65% - 89%)</span>
+      </div>
+      <div class="legend-item">
+        <span class="color-box" style="background-color: #008000;"></span><span class="description">Mayormente actualizado (90% - 100%)</span>
+      </div>
+    </div>
+    <style>
+      .map-legend {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  font-size: 14px; /* Ajuste de tamaño de fuente global */
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.color-box {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.description {
+  display: inline; /* Asegura que la descripción esté en la misma línea que el color-box */
+  margin-right: 10px; /* Espacio adicional a la derecha para separar elementos */
+}
+
+    </style>
+  </div>
   <div id="detalle" class="mt-5">
     <div class="container"> 
       <div class="row">
@@ -144,8 +188,8 @@
 
     </div>
 
-  </div> 
-
+  </div>  
+  <div id="loader" class="loader">Cargando...</div>
 </body>
 
 </html>

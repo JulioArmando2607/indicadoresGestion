@@ -16,16 +16,17 @@
 
 <body style="background-color: #F4F7FD;">
 
-    <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color:  #B40404 !important;color: white;">
+    <nav class="navbar navbar-expand-lg navbar-light shadow fixed-top"
+        style="background-color:  #B40404 !important;color: white;">
         <div class="container">
-          <a class="navbar-brand" href="#" style="padding: 0px; width: 20%;">
-            <img src="imagenes/logoPais.png" style="width: 100%;">
-          </a>
-          <h4 style="width: 80%; text-align: center;">SEMAFORIZACIÓN DE INDICADORES DE OPERATIVIDAD DE TAMBOS</h4>
+            <a class="navbar-brand" href="#" style="padding: 0px; width: 20%;">
+                <img src="imagenes/logoPais.png" style="width: 100%;">
+            </a>
+            <h4 style="width: 80%; text-align: center;">SEMAFORIZACIÓN DE INDICADORES DE OPERATIVIDAD DE TAMBOS</h4>
         </div>
-      </nav>
+    </nav>
 
-      <br clear="all"><br><br>
+    <br clear="all"><br><br>
 
     <div id="container"></div>
 
@@ -44,32 +45,11 @@
                             <div id="velocimetro1"></div>
                             <div id="dataCantidadv1"></div>
                         </div>
-                        <a  href="map_peru_eqv.html" id="miBoton" class="btn btn-danger" >Ir a mapa Equipos Vigentes</a>
+                        <a href="map_peru_eqv.html" id="miBoton" class="btn btn-danger">Ir a mapa Equipos Vigentes</a>
 
-                     
+
                     </div>
                 </div>
-
-
-           <!---     <div class="col-lg-4">
-                    <div class="card card-margin">
-                        <div class="card-header no-border">
-                            <h5 class="card-title" style="text-align: center;">INDICADORES EQUIPOS OBSOLETOS</h5>
-                        </div>
-                        <div class="card-body pt-0" style="text-align: center;">
-                            <div id="velocimetro2"></div>
-                            <div id="dataCantidadv2"></div>
-                        </div>
-                        <button id="miBotono" class="btn btn-info">Ir a mapa Equipos Obsoletos</button>
-
-                        <script>
-                            document.getElementById('miBotono').addEventListener('click', function () {
-                                window.location.href = 'C:/Users/JulioArmando/Documents/MAPA%20OPERATIVIDAD/map_peru_eqo.html'; // Reemplaza 'tu_ruta_aqui' con la URL a la que deseas redirigir
-                            });
-                        </script>
-                    </div>
-                </div>-->
-
 
                 <div class="col-lg-6">
                     <div class="card card-margin">
@@ -92,9 +72,95 @@
             </div>
 
         </div>
+        <div class="map-legend">
+            <h3>Leyenda</h3>
+            <div class="legend-item"> 
+              <span class="color-box" style="background-color: red;"></span>
+              <span class="description">Necesita atención (0% - 64% vigente/operativo)</span>
+            </div>
+            <div class="legend-item">
+              <span class="color-box" style="background-color: yellow;"></span>
+              <span class="description">Requiere mejoras (65% - 89% vigente/operativo)</span>
+            </div>
+            <div class="legend-item">
+              <span class="color-box" style="background-color: green;"></span>
+              <span class="description">Condiciones óptimas (90% - 100% vigente/operativo)</span>
+            </div>
+            <!-- Agrega más elementos a la leyenda según sea necesario -->
+          </div>
+          <style>
+            .map-legend {
+                  position: absolute;
+                  bottom: 20px;
+                  left: 20px;
+                  background-color: #fff;
+                  padding: 10px;
+                  border-radius: 5px;
+                  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+                  z-index: 1000; /* Asegura que la leyenda esté sobre el mapa */
+                }
+      
+                .map-legend h3 {
+                  margin-top: 0;
+                  font-size: 16px;
+                }
+      
+                .legend-item {
+                  display: flex;
+                  align-items: center;
+                  margin-bottom: 5px;
+                }
+      
+                .color-box {
+                  width: 20px;
+                  height: 20px;
+                  display: inline-block;
+                  margin-right: 5px;
+                }
+      
+                .description {
+                  font-size: 14px;
+                }
+          </style>
     </div>
+    <div id="loader" class="loader">Cargando...</div>
 
+    <style type="text/css">
+      .loader {
+                display: none; /* Escondido por defecto */
+                position: fixed; /* Se mantiene en la misma posición al hacer scroll */
+                top: 50%; /* Centrar verticalmente */
+                left: 50%; /* Centrar horizontalmente */
+                transform: translate(-50%, -50%); /* Ajustar la posición exacta al centro */
+                z-index: 1000; /* Asegura que el loader esté por encima de otros elementos */
+
+                /* Opcional: Estilos para mejorar la apariencia */
+                padding: 20px;
+                background: rgba(0, 0, 0, 0.75); /* Fondo semitransparente oscuro */
+                color: white; /* Color del texto */
+                border-radius: 5px;
+                text-align: center;
+
+                /* Más estilos para la animación y apariencia del loader aquí */
+            }
+
+        /* Opcional: Fondo oscuro o desenfocado */
+        body.loading {
+            overflow: hidden;
+        }
+
+        body.loading #loader {
+            display: block;
+        }
+    </style>
     <script>
+        function mostrarLoader() {
+            document.getElementById('loader').style.display = 'block';
+        }
+
+        function ocultarLoader() {
+            document.getElementById('loader').style.display = 'none';
+        }
         function crearVelocimetro(id) {
             var canvas = document.createElement('canvas');
             canvas.width = 300;
@@ -137,8 +203,8 @@
             return actualizarAguja; // Devuelve la función para actualizar la aguja
         }
 
-        // Función para cargar datos y actualizar los velocímetros
         function cargarData() {
+           // mostrarLoader();
             let postData = { tipo: 1 };
             let postBody = JSON.stringify(postData);
 
@@ -151,42 +217,35 @@
                 .then(dataFromEndpoint => {
                     console.log(dataFromEndpoint);
                     var actualizarAguja1 = crearVelocimetro('velocimetro1');
-                   // var actualizarAguja2 = crearVelocimetro('velocimetro2');
                     actualizarAguja1(+dataFromEndpoint[0].porcentaje_vigente / 100);
-                    ///actualizarAguja2(+dataFromEndpoint[0].porcentaje_obsoleto / 100); // Asumiendo que hay un segundo valor
-
                     var porcentaje1 = parseFloat(dataFromEndpoint[0].porcentaje_vigente).toFixed(1);
-                    //var porcentaje2 = parseFloat(dataFromEndpoint[0].porcentaje_obsoleto).toFixed(1);
-
                     document.getElementById('dataCantidadv1').textContent = porcentaje1 + '%';
-                 //   document.getElementById('dataCantidadv2').textContent = porcentaje2 + '%'; 
+                    //ocultarLoader();
 
                 })
                 .catch(error => {
                     console.error('Error al obtener los datos:', error);
+                    //ocultarLoader();
                 });
         }
 
-         cargarData();
+        cargarData();
 
 
-        async function mostrarEstadoInternet(){
-            await axios.get('https://backend.pais.gob.pe:8075/api-pnpais/mapa/app/listadarBandejaTambosInternet/2023/0').then(response =>{
-
+        async function mostrarEstadoInternet() {
+            mostrarLoader();
+            await axios.get('https://backend.pais.gob.pe:8075/api-pnpais/mapa/app/listadarBandejaTambosInternet/2023/0').then(response => {
+                ocultarLoader();
                 datos = response.data[0];
                 datos = datos.filter((row) => row.estado === 'PRESTA SERVICIO');
                 const operativo = datos.filter((row) => row.estado_internet === 'OPERATIVO').length;
                 const inoperativo = datos.filter((row) => row.estado_internet !== 'OPERATIVO').length;
-
                 const total = datos.length;
-                
                 var actualizarAguja1 = crearVelocimetro('velocimetroInternet');
-                actualizarAguja1((operativo/total));
-
-                const porcentaje = parseFloat((operativo/total)*100).toFixed(1);
-
+                actualizarAguja1((operativo / total));
+                const porcentaje = parseFloat((operativo / total) * 100).toFixed(1);
                 document.getElementById('porcentajeInternet').textContent = porcentaje + '%';
-            
+
             });
         }
 

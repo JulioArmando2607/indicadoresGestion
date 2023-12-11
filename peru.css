@@ -324,3 +324,30 @@
   .widget-49 .widget-49-meeting-action a {
     text-transform: uppercase;
   }
+ #loader {
+            display: none; /* Escondido por defecto */
+            position: fixed; /* Se mantiene en la misma posición al hacer scroll */
+            top: 50%; /* Centrar verticalmente */
+            left: 50%; /* Centrar horizontalmente */
+            transform: translate(-50%, -50%); /* Ajustar la posición exacta al centro */
+            z-index: 1000; /* Asegura que el loader esté por encima de otros elementos */
+
+            /* Opcional: Estilos para mejorar la apariencia */
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.75); /* Fondo semitransparente oscuro */
+            color: white; /* Color del texto */
+            border-radius: 5px;
+            text-align: center;
+
+            /* Más estilos para la animación y apariencia del loader aquí */
+        }
+
+    /* Opcional: Fondo oscuro o desenfocado */
+    body.loading {
+        overflow: hidden;
+    }
+
+    body.loading #loader {
+        display: block;
+    }
+ 
